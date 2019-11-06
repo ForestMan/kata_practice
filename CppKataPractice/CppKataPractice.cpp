@@ -3,10 +3,21 @@
 
 #include <iostream>
 
-int main()
+#include "CppKataPractice.h"
+
+namespace kata_practice
 {
-    std::cout << "Hello World!\n";
+	//always return -1 if can't find the number
+	int ChopAndFindNumber(int numberToFind)
+	{
+		return -1;
+	}
 }
+
+//int main()
+//{
+//    std::cout << "Hello World!\n";
+//}
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
 // Debug program: F5 or Debug > Start Debugging menu
