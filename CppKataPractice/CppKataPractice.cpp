@@ -1,5 +1,5 @@
 // CppKataPractice.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
+// About Kata: http://codekata.com/kata/kata01-supermarket-pricing/
 
 #include <iostream>
 
