@@ -8,8 +8,30 @@
 namespace kata_practice
 {
 	//always return -1 if can't find the number
-	int ChopAndFindNumber(int numberToFind)
+	int ChopAndFindNumber(int numberToFind, std::vector<int>& ArrayToTraverse)
 	{
+		if (ArrayToTraverse.empty())
+			return -1;
+
+		if (ArrayToTraverse.size() == 1)
+		{
+			if (ArrayToTraverse[0] == numberToFind)
+			{
+				return 0;
+			}
+		}
+
+		int halfIndex = ArrayToTraverse.size() / 2;
+		if (ArrayToTraverse[halfIndex] == numberToFind)
+		{
+			return halfIndex;
+		}
+		else
+		{
+
+		}
+		
+
 		return -1;
 	}
 }
