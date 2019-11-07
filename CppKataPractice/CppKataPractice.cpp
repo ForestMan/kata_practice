@@ -21,16 +21,30 @@ namespace kata_practice
 			}
 		}
 
+		int isOdd = ArrayToTraverse.size() % 2;
 		int halfIndex = ArrayToTraverse.size() / 2;
+
 		if (ArrayToTraverse[halfIndex] == numberToFind)
 		{
 			return halfIndex;
 		}
 		else
 		{
+			int startIndex = ArrayToTraverse[halfIndex] > numberToFind ? 0 : halfIndex;
+			if (isOdd == 1)
+			{
+				startIndex = ArrayToTraverse[halfIndex] > numberToFind ? 0 : halfIndex + 1;
+			}
 
+			std::vector<int> halfArray;
+			for (int i = startIndex; i < startIndex+halfIndex; i++)
+			{
+				halfArray.push_back(ArrayToTraverse[i]);
+			}
+			
+			int result = ChopAndFindNumber(numberToFind, halfArray);
+			return result == -1 ? result : startIndex + result;
 		}
-		
 
 		return -1;
 	}

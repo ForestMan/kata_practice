@@ -98,19 +98,33 @@ namespace CppKataTest
 
 		TEST_METHOD(KarateChop_SuccessSearchOddLengthArray)
 		{
-			std::vector<int> arrayToTraverse{ 2, 6, 8 };
+			std::vector<int> arrayToTraverse{ -50, -34, 0, 2, 6, 8, 10032 };
 
-			int expectedIndex = 0;
-			int result = kata_practice::ChopAndFindNumber(arrayToTraverse[expectedIndex], arrayToTraverse);
-			Assert::AreEqual(expectedIndex, result);
+			for (int i = 0; i < arrayToTraverse.size(); i++)
+			{
+				int result = kata_practice::ChopAndFindNumber(arrayToTraverse[i], arrayToTraverse);
+				Assert::AreEqual(i, result);
+			}
+		}
 
-			expectedIndex = 1;
-			result = kata_practice::ChopAndFindNumber(arrayToTraverse[expectedIndex], arrayToTraverse);
-			Assert::AreEqual(expectedIndex, result);
+		TEST_METHOD(KarateChop_UnsuccessSearchEvenLengthArray)
+		{
+			int NumberToSearch = 5;
+			std::vector<int> arrayToTraverse{ 2, 6, 8, 24 };
 
-			expectedIndex = 2;
-			result = kata_practice::ChopAndFindNumber(arrayToTraverse[expectedIndex], arrayToTraverse);
-			Assert::AreEqual(expectedIndex, result);
+			int result = kata_practice::ChopAndFindNumber(NumberToSearch, arrayToTraverse);
+			Assert::AreEqual(-1, result);
+		}
+
+		TEST_METHOD(KarateChop_SuccessSearchEvenLengthArray)
+		{
+			std::vector<int> arrayToTraverse{ -34, 0, 2, 6, 8, 10032 };
+
+			for (int i = 0; i < arrayToTraverse.size(); i++)
+			{
+				int result = kata_practice::ChopAndFindNumber(arrayToTraverse[i], arrayToTraverse);
+				Assert::AreEqual(i, result);
+			}
 		}
 	};
 }
