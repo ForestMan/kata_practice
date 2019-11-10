@@ -17,7 +17,6 @@ namespace kata_practice
 		if (arrayLength == 1)
 		{
 			return (arrayToSearch[startIndex] == elementToFind) ? startIndex : -1;
-
 		}
 
 		int middleIndex = startIndex + arrayLength / 2;
@@ -33,8 +32,6 @@ namespace kata_practice
 		{
 			return middleIndex;
 		}
-
-		return -1;
 	}
 
 	//always return -1 if can't find the number
