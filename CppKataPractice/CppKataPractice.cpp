@@ -7,46 +7,49 @@
 
 namespace kata_practice
 {
-	//always return -1 if can't find the number
-	int ChopAndFindNumber(int numberToFind, std::vector<int>& ArrayToTraverse)
+	int FindElementInSubArray(int elementToFind, std::vector<int>& arrayToSearch, int startIndex, int endIndex)
 	{
-		if (ArrayToTraverse.empty())
+		int arrayLength = endIndex - startIndex;
+		if (arrayLength == 0)
+		{
 			return -1;
-
-		if (ArrayToTraverse.size() == 1)
+		}
+		if (arrayLength == 1)
 		{
-			if (ArrayToTraverse[0] == numberToFind)
-			{
-				return 0;
-			}
+			return (arrayToSearch[startIndex] == elementToFind) ? startIndex : -1;
+
 		}
 
-		int isOdd = ArrayToTraverse.size() % 2;
-		int halfIndex = ArrayToTraverse.size() / 2;
-
-		if (ArrayToTraverse[halfIndex] == numberToFind)
+		int middleIndex = startIndex + arrayLength / 2;
+		if (arrayToSearch[middleIndex] > elementToFind)
 		{
-			return halfIndex;
+			return FindElementInSubArray(elementToFind, arrayToSearch, 0, middleIndex);
 		}
-		else
+		else if (arrayToSearch[middleIndex] < elementToFind)
 		{
-			int startIndex = ArrayToTraverse[halfIndex] > numberToFind ? 0 : halfIndex;
-			if (isOdd == 1)
-			{
-				startIndex = ArrayToTraverse[halfIndex] > numberToFind ? 0 : halfIndex + 1;
-			}
-
-			std::vector<int> halfArray;
-			for (int i = startIndex; i < startIndex+halfIndex; i++)
-			{
-				halfArray.push_back(ArrayToTraverse[i]);
-			}
-			
-			int result = ChopAndFindNumber(numberToFind, halfArray);
-			return result == -1 ? result : startIndex + result;
+			return FindElementInSubArray(elementToFind, arrayToSearch, middleIndex, endIndex);
+		}
+		else if (arrayToSearch[middleIndex] == elementToFind)
+		{
+			return middleIndex;
 		}
 
 		return -1;
+	}
+
+	//always return -1 if can't find the number
+	int ChopAndFindNumber(int numberToFind, std::vector<int>& ArrayToTraverse)
+	{
+		if (ArrayToTraverse.size() == 0)
+		{
+			return -1;
+		}
+		if (ArrayToTraverse.size() == 1)
+		{
+			return (ArrayToTraverse[0] == numberToFind) ? 0 : -1;
+		}
+
+		return FindElementInSubArray(numberToFind, ArrayToTraverse, 0, ArrayToTraverse.size());
 	}
 }
 
