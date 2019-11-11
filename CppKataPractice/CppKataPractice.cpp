@@ -48,6 +48,46 @@ namespace kata_practice
 
 		return FindElementInSubArray(numberToFind, ArrayToTraverse, 0, ArrayToTraverse.size());
 	}
+
+	int FindElementInSubArray(int elementToFind, int* arrayToSearch, int startIndex, int endIndex)
+	{
+		int arrayLength = endIndex - startIndex;
+
+		if (arrayLength == 0 || arrayToSearch == nullptr)
+			return -1;
+
+		if (arrayLength == 1)
+		{
+			return arrayToSearch[0] == elementToFind ? 0 : -1;
+		}
+
+		int middleIndex = startIndex + arrayLength / 2;
+		if (arrayToSearch[middleIndex] > elementToFind)
+		{
+			return FindElementInSubArray(elementToFind, arrayToSearch, startIndex, middleIndex);
+		}
+		else if (arrayToSearch[middleIndex] < elementToFind)
+		{
+			return FindElementInSubArray(elementToFind, arrayToSearch, middleIndex, endIndex);
+		}
+		else if(arrayToSearch[middleIndex] == elementToFind)
+		{
+			return middleIndex;
+		}
+	}
+	
+	int ChopAndFindNumber(int numberToFind, int* ArrayToTraverse, int ArrayLength)
+	{
+		if (ArrayLength == 0 || ArrayToTraverse == nullptr)
+			return -1;
+
+		if (ArrayLength == 1)
+		{
+			return ArrayToTraverse[0] == numberToFind ? 0 : -1;
+		}
+
+		return FindElementInSubArray(numberToFind, ArrayToTraverse, 0, ArrayLength);
+	}
 }
 
 //int main()
